@@ -13,6 +13,12 @@
 @property (nonatomic, strong, readwrite) NSURL *contentURL;
 @property (nonatomic, readwrite) HCPUpdateTime updateTime;
 
+/*edit by carl*/
+@property (nonatomic, strong, readwrite) NSString *displayLog;
+@property (nonatomic, strong, readwrite) NSURL *androidDownloadUrl;
+@property (nonatomic, strong, readwrite) NSURL *iosDownloadUrl;
+@property (nonatomic, strong, readwrite) NSString *verLogZh;
+@property (nonatomic, strong, readwrite) NSString *verLogEn;
 @end
 
 #pragma mark Json keys declaration
@@ -22,6 +28,12 @@ static NSString *const MINIMUM_NATIVE_VERSION_JSON_KEY = @"min_native_interface"
 static NSString *const UPDATE_TIME_JSON_KEY = @"update";
 static NSString *const CONTENT_URL_JSON_KEY = @"content_url";
 
+/*edit by carl*/
+static NSString *const DISPLAY_LOG_JSON_KEY = @"display_log";
+static NSString *const ANDROID_DOWNLOAD_URL_JSON_KEY = @"android_download_url";
+static NSString *const IOS_DOWNLOAD_URP_JSON_KEY = @"ios_download_url";
+static NSString *const VER_LOG_ZH_JSON_KEY = @"ver_log_zh";
+static NSString *const VER_LOG_EN_JSON_KEY = @"ver_log_en";
 #pragma mark HCPUpdateTime enum strings declaration
 
 static NSString *const UPDATE_TIME_NOW = @"now";
@@ -105,6 +117,26 @@ static NSString *const UPDATE_TIME_ON_RESUME = @"resume";
         jsonObject[CONTENT_URL_JSON_KEY] = _contentURL.absoluteString;
     }
     
+    /*edit by carl*/
+    if (_displayLog) {
+        jsonObject[DISPLAY_LOG_JSON_KEY] = _displayLog;
+    }
+    
+    if (_androidDownloadUrl) {
+        jsonObject[ANDROID_DOWNLOAD_URL_JSON_KEY] = _androidDownloadUrl.absoluteString;
+    }
+    
+    if (_iosDownloadUrl) {
+        jsonObject[IOS_DOWNLOAD_URP_JSON_KEY] = _iosDownloadUrl.absoluteString;
+    }
+    
+    if (_verLogZh) {
+        jsonObject[VER_LOG_ZH_JSON_KEY] = _verLogZh;
+    }
+    
+    if (_verLogEn) {
+        jsonObject[VER_LOG_EN_JSON_KEY] = _verLogEn;
+    }
     return jsonObject;
 }
 
@@ -121,7 +153,14 @@ static NSString *const UPDATE_TIME_ON_RESUME = @"resume";
     
     NSString *updateTime = jsonObject[UPDATE_TIME_JSON_KEY];
     contentConfig.updateTime = [contentConfig updateTimeStringToEnum:updateTime];
-    
+
+    /*edit by carl*/
+    contentConfig.displayLog =jsonObject[DISPLAY_LOG_JSON_KEY];
+    contentConfig.androidDownloadUrl =[NSURL URLWithString:jsonObject[ANDROID_DOWNLOAD_URL_JSON_KEY]];
+    contentConfig.iosDownloadUrl =[NSURL URLWithString:jsonObject[IOS_DOWNLOAD_URP_JSON_KEY]];
+    contentConfig.verLogZh =jsonObject[VER_LOG_ZH_JSON_KEY];
+    contentConfig.verLogEn =jsonObject[VER_LOG_EN_JSON_KEY];
+
     return contentConfig;
 }
 
