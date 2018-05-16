@@ -62,4 +62,33 @@ typedef NS_ENUM(NSUInteger, HCPUpdateTime){
  */
 @property (nonatomic, readonly) HCPUpdateTime updateTime;
 
+
+/**
+ *  Getter for displayLog on the server where all content is stored.
+ */
+@property (nonatomic, strong, readonly) NSString *displayLog;
+
+
+/**
+ *  Getter for androidDownloadUrl on the server where all content is stored.
+ */
+@property (nonatomic, strong, readonly) NSURL *androidDownloadUrl;
+
+
+/**
+ *  Getter for iosDownloadUrl on the server where all content is stored.
+ */
+@property (nonatomic, strong, readonly) NSURL *iosDownloadUrl;
+
+
+/**
+ *  Getter for verLogZh on the server where all content is stored.
+ */
+@property (nonatomic, strong, readonly) NSString *verLogZh;
+
+
+/**
+ *  Getter for verLogEn on the server where all content is stored.
+ */
+@property (nonatomic, strong, readonly) NSString *verLogEn;
 @end
